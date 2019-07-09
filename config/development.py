@@ -1,15 +1,14 @@
 from . import Config
 
-class Developmnet(Config):
+class Development(Config):
     ENV_TYPE = "Dev"
 
     DEBUG = True
-    FLASK_HOST = 'localhost'
-    PORT = "8000"
 
-    DB_NAME = None
-    DB_USER = None
-    DB_PASSWD = None
-    DB_HOST = None
-    DB_PORT = None
-    
+    DB_NAME = "praksa_2019"
+    DB_USER = "sava"
+    DB_PASSWD = "sifra"
+    DB_HOST = "127.0.0.1"
+    DB_PORT = 5432
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_DATABASE_URI = f'postgresql+psycopg2://{DB_USER}:{DB_PASSWD}@{DB_HOST}:{DB_PORT}/{DB_NAME}'    
