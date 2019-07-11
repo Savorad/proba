@@ -6,7 +6,7 @@ from werkzeug.exceptions import Forbidden
 from flask import request
 from measurements_bp.models import Measurement
 from app import db
-from schemas import CreateMeasurements
+from schemas import CreateMeasurements,GetMeasurements
 from marshmallow import ValidationError
 from clients_bp.models import Client
 
@@ -27,7 +27,8 @@ def authentication_required(f):
 
 
 
-@measurement_api.route("/", methods=['POST'])
+
+@measurement_api.route("/", methods=['POST','GET'])
 class MeasurementApi(Resource):
 
     @authentication_required
@@ -48,5 +49,18 @@ class MeasurementApi(Resource):
         db.session.commit()
 
         return data
+
+    @authentication_required
+    def get(self):
+
+        db_data = db.session.query(Measurement).order_by(Measurement.timestamp.desc()).first()
+
+        if db_data == None :
+            return {"ErrMsg" : "No enteries found"}
+
+        dumped = GetMeasurements().dump(db_data)
+
+        return dumped
+
 
 

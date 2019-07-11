@@ -1,5 +1,6 @@
 from app import db
 from sqlalchemy import (Column, Integer, Float, String, DateTime)
+import datetime
 
 
 class Measurement(db.Model):
@@ -7,4 +8,4 @@ class Measurement(db.Model):
     air_quality = Column(Float, nullable=False)
     humidity = Column(Float, nullable=False)
     temperature = Column(Float, nullable=False)
-    timestamp = Column(DateTime(timezone=True), nullable=False, server_default='now()')
+    timestamp = Column(DateTime(timezone=True), nullable=False, default=datetime.datetime.utcnow)

@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask,render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from marshmallow import ValidationError
@@ -36,3 +36,6 @@ migrate = Migrate(app, db)
 @app.route("/test")
 def hello():
     return "Hello world"
+@app.route("/")
+def regPage():
+    return render_template("registration.html",val="Hello")

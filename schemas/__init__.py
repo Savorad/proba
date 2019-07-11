@@ -1,2 +1,3 @@
 from marshmallow import Schema, fields
 from schemas.create_measurements_schema import CreateMeasurements
+from schemas.get_measurements_schema import GetMeasurements
