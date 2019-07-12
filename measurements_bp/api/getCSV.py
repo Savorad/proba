@@ -14,7 +14,7 @@ from clients_bp.models import Client
 
 @measurement_api.route("/getCSV", methods=['GET'])
 class CSVGetter(Resource):
-    @authentication_required
+    
     def get(self):
         def generate():
 
